@@ -6,9 +6,19 @@ class PolyTreeNode
         @children = []
     end
 
-    def parent=(node)
-        @parent = node
+    def parent=(parent_node)
+        unless parent_node.nil?
+            self.parent.children.delete(self) unless self.parent.nil?
+            @parent = parent_node
+            @parent.children << self unless @parent.children.include?(self)
+        else
+            @parent = parent_node
+        end
     end
 
 
+
+
 end
+
+
